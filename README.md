@@ -3,7 +3,7 @@ Radio-Browser
 
 #STATUS
 
-	- 2014-03-27 - @jvarsoke - ported to work with Rythmbox 3.0.1.  Favourites[sic] work but not able to see if other database features work because download from source website fails.  Need to look into it.  I'm sure there are other features broken, but I've never used a working copy so not sure of its features.
+- 2014-03-27 - @jvarsoke - ported to work with Rythmbox 3.0.1.  Favourites[sic] work but not able to see if other database features work because download from source website fails.  Need to look into it.  I'm sure there are other features broken, but I've never used a working copy so not sure of its features.
 
 =============
 
