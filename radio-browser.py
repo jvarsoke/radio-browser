@@ -64,16 +64,16 @@ class ConfigDialog (GObject.Object, PeasGtk.Configurable):
         self.outputpath = self.gconf.get_string(gconf_keys['outputpath'])
         if not self.outputpath:
             self.outputpath = os.path.expanduser("~")
-            # try to read xdg music dir
+            #try to read xdg music dir
             try:
                 f = open(self.outputpath+"/.config/user-dirs.dirs","r")
             except IOError:
-                print "xdg user dir file not found"
+                print("xdg user dir file not found")
             else:
                 for line in f:
                     if line.startswith("XDG_MUSIC_DIR"):
                         self.outputpath = os.path.expandvars(line.split("=")[1].strip().strip('"'))
-                        print self.outputpath
+                        print((self.outputpath))
                 f.close()
         self.gconf.set_string(gconf_keys['outputpath'], self.outputpath)
 
@@ -104,7 +104,7 @@ class ConfigDialog (GObject.Object, PeasGtk.Configurable):
         return builder.get_object( DIALOG )
 
     def on_file_browser_button_clicked(self,button):
-        print "file browser button"
+        print("file browser button")
         filew = Gtk.FileChooserDialog("File selection", action=Gtk.FileChooserAction.SELECT_FOLDER, buttons=(Gtk.STOCK_CANCEL,
                                           Gtk.ResponseType.REJECT,
                                           Gtk.STOCK_OK,
@@ -116,19 +116,19 @@ class ConfigDialog (GObject.Object, PeasGtk.Configurable):
 
     """ immediately change gconf values in config dialog after user changed download trys """
     def on_spin_download_trys_change_value(self,spin):
-        print "on spin change"
+        print("on spin change")
         self.download_trys = str(self.spin_download_trys.get_value())
         self.gconf.set_string(gconf_keys['download_trys'], self.download_trys)
 
     """ immediately change gconf values in config dialog after user changed removal days """
     def on_spin_removaltime_change_value(self,spin):
-        print "on removal time change"
+        print("on removal time change")
         self.recently_played_purge_days = str(self.spin_removaltime.get_value())
         self.gconf.set_string(gconf_keys['recently_played_purge_days'], self.recently_played_purge_days)
 
     """ immediately change gconf values in config dialog after user changed recorded music output directory """
     def on_entry_outputpath_changed(self,entry):
-        print "on outputpath change"
+        print("on outputpath change")
         self.outputpath = self.entry_outputpath.get_text()
         self.gconf.set_string(gconf_keys['outputpath'], self.outputpath)
 
@@ -188,8 +188,8 @@ class RadioBrowserPlugin (GObject.GObject, Peas.Activatable):
                        shell=self.shell, 
                        name=_("Radio browser"), 
                        entry_type=entry_type,
-                       plugin=self,
-                       pixbuf=pxbf)
+                       plugin=self)
+                       #pixbuf=pxbf)
 
         self.shell.register_entry_type_for_source(self.source, entry_type)
         self.shell.append_display_page(self.source, group)
@@ -235,12 +235,12 @@ class RadioBrowserPlugin (GObject.GObject, Peas.Activatable):
             try:
                 f = open(self.outputpath+"/.config/user-dirs.dirs","r")
             except IOError:
-                print "xdg user dir file not found"
+                print("xdg user dir file not found")
             else:
                 for line in f:
                     if line.startswith("XDG_MUSIC_DIR"):
                         self.outputpath = os.path.expandvars(line.split("=")[1].strip().strip('"'))
-                        print self.outputpath
+                        print((self.outputpath))
                 f.close()
         self.gconf.set_string(gconf_keys['outputpath'], self.outputpath)
 
